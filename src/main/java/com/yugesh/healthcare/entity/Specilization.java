@@ -21,11 +21,11 @@ public class Specilization {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="spec_id")
 	private Long id;
-	@Column(name="spec_name",length = 60)
+	@Column(name="spec_name",length = 60,nullable = false,unique = true)
 	private String specName;
-	@Column(name="spec_code",length = 10)
+	@Column(name="spec_code",length = 10,nullable = false,unique = true)
 	private String specCode;
-	@Column(name="spec_note",length = 50)
+	@Column(name="spec_note",length = 50,nullable = false)
 	private String specNote;
 
 }

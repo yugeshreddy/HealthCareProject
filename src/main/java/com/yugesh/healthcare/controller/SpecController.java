@@ -34,7 +34,6 @@ public class SpecController {
 
 	@PostMapping("/save")
 	public String specSave(@ModelAttribute Specilization specilization, Model model) {
-		System.out.println("specilixation" + specilization);
 		Long id = service.saveSpecialization(specilization);
 		String message = "Record ('" + id + "') is created";
 		model.addAttribute("message", message);
@@ -80,7 +79,7 @@ public class SpecController {
 	@PostMapping("/update")
 	public String specUpdate(@ModelAttribute Specilization spec, RedirectAttributes attr) {
 		service.updateSpecialization(spec);
-		attr.addAttribute("specialization", "Record " + spec.getId() + " is created");
+		attr.addAttribute("message", "Record " + spec.getId() + " is created");
 		return "redirect:all";
 	}
 

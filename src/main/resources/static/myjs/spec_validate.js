@@ -25,15 +25,16 @@ $(document).ready(function() {
 			specCodeError = false;
 		} else {
 			var id = 0; //for register
-			if($("#id").val()!=undefined) { //edit page
+			if ($("#id").val() != undefined) { //edit page
 				specCodeError = true;
 				id = $("#id").val();
 			}
 			$.ajax({
 				url: 'checkCode',
-				data: { "code": val,"id": id },
+				data: { "code": val, "id": id },
 				success: function(resTxt) {
 					if (resTxt != '') {
+						console.log("result1" + resTxt);
 						$("#specCodeError").show();
 						$("#specCodeError").html(resTxt);
 						$("#specCodeError").css('color', 'red');
@@ -63,31 +64,34 @@ $(document).ready(function() {
 			$("#specNameError").css('color', 'red');
 			specNameError = false;
 		} else {
+			//$("#specNameError").hide();
 			var id = 0; //for register
-			if($("#id").val()!=undefined) { //edit page
+			if ($("#id").val() != undefined) { //edit page
 				specCodeError = true;
 				id = $("#id").val();
-			$.ajax({
-				url: 'checkName',
-				data: { "name": val,"id":id },
-				success: function(res) {
-					if (res != '') {
-						$("#specNameError").show();
-						$("#specNameError").html(res);
-						$("#specNameError").css('color', 'red');
-						specNameError = false;
-					} else {
-						$("#specNameError").hide();
-						specNameError = true;
-					}
 				}
+				$.ajax({
+					url: 'checkName',
+					data: { "name": val, "id": id },
+					success: function(res) {
+						console.log("result" + res);
+						if (res != '') {
+							$("#specNameError").show();
+							$("#specNameError").html(res);
+							$("#specNameError").css('color', 'red');
+							specNameError = false;
+						} else {
+							$("#specNameError").hide();
+							specNameError = true;
+						}
+					}
 
-			});
+				});
+			
+
+			return specNameError;
 		}
-
-		return specNameError;
 	}
-}
 	function validate_specNote() {
 		var val = $("#specNote").val();
 		var exp = /^[A-Za-z0-9\s\.\-\,\']{10,250}$/;
@@ -123,7 +127,7 @@ $(document).ready(function() {
 	});
 
 	//5. on submit
-	$("#specForm").submit(function() {
+	$("#specform").submit(function() {
 		validate_specCode();
 		validate_specName();
 		validate_specNote();
