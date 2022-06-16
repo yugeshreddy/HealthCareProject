@@ -1,5 +1,8 @@
 package com.yugesh.healthcare.repo;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -14,4 +17,7 @@ public interface SpecilizationRepo extends JpaRepository<Specilization, Long> {
 	Integer getspecCodeCountforEdit(String specCode, Long id);
 	@Query("select count(specName) from Specilization where specName=:specName and id!=:id")
 	Integer getspecNameCountforEdit(String specName, Long id);
+	@Query("SELECT id,specName FROM Specilization ")
+	List<Object[]> getSpecIdAndName();
+	
 }

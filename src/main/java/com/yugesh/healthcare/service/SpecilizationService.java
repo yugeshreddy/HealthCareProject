@@ -1,6 +1,7 @@
 package com.yugesh.healthcare.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yugesh.healthcare.entity.Specilization;
 
@@ -15,5 +16,6 @@ public interface SpecilizationService {
 	public boolean isNameExist(String name);
 	public boolean isSpecNameExistForEdit(String name, Long id);
 	public boolean isSpecCodeExistForEdit(String code, Long id);
-
+	Map<Long,String> getSpecIdAndName();
+	long getSpecializationCount();
 }

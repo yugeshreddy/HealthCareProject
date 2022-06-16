@@ -1,6 +1,7 @@
 package com.yugesh.healthcare.serviceImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import com.yugesh.healthcare.entity.Specilization;
 import com.yugesh.healthcare.exception.SpecializationNotFoundException;
 import com.yugesh.healthcare.repo.SpecilizationRepo;
 import com.yugesh.healthcare.service.SpecilizationService;
+import com.yugesh.healthcare.util.MyCollectionsUtil;
 
 @Service
 public class SpecilizationServiceimpl implements SpecilizationService {
@@ -67,6 +69,17 @@ public class SpecilizationServiceimpl implements SpecilizationService {
 	@Override
 	public boolean isSpecCodeExistForEdit(String code, Long id) {
 		return repo.getspecCodeCountforEdit(code, id) > 0;
+	}
+
+	@Override
+	public Map<Long, String> getSpecIdAndName() {
+		List<Object[]> list = repo.getSpecIdAndName();
+		Map<Long,String> map = MyCollectionsUtil.convertToMap(list);
+		return map;
+	}
+	@Override
+	public long getSpecializationCount() {
+		return repo.count();
 	}
 
 }
